@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Quiz: Ekoko Clesh and Mwangaza</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        h1 {
+            color: #ff4081;
+        }
+        #question {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        #options {
+            display: flex;
+            justify-content: center;
+        }
+        .option {
+            margin: 0 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #ff4081;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+        }
+        #surprise-message {
+            font-size: 18px;
+            margin-top: 20px;
+            color: #007bff;
+        }
+        #explanation {
+            font-size: 20px;
+            margin-top: 20px;
+            font-weight: bolder;
+        }
+        #love-declaration {
+        display: none;
+        margin-top: 30px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 70%;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: #f9f9f9;
+        font-family: 'Arial', sans-serif;
+        line-height: 1.6;
+    }
+
+#love-declaration textarea {
+    width: 100%;
+    border: none;
+    resize: none;
+    background-color: #f9f9f9;
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    text-align: justify;
+    text-justify: auto;
+}
+
+    #restart-button {
+        display: none;
+        margin-top: 20px;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+    }
+    </style>
+</head>
+<body>
+    <h1>Love Quiz</h1>
+    <div id="question"></div>
+    <div id="options"></div>
+    <div id="explanation"></div>
+    <div id="surprise-message"></div>
+    <div id="love-declaration">
+        <p>
+            My Dearest Mwangaza,
+    
+            As I pen down these words, memories of our shared past flood my mind, and I am overcome with a warmth that only your presence could ignite. The journey from second class to this moment has been nothing short of magical, and you, my love, have been the constant, the guiding star that lights my way.
+    
+            From the shy and introverted boy, I once was, to the man standing before you now, you've been my source of confidence and security. Your kindness, humor, and intelligence are the pillars that make you the perfect girl for me. I remember vividly the day we first met, a day etched in the tapestry of my heart.
+    
+            Your beauty, like a ray of sunshine on a cloudy day, stopped the world around me. The image of that moment is forever imprinted in my soul. The letter you wrote to me, the first touch of your lips, and the sweetness of our secret meetings behind Grace's house – these are treasures that time cannot fade.
+    
+            Mwangaza, you hold an irreplaceable place in my heart. Your love has shaped the best moments of my childhood, and the echoes of our shared laughter resonate within me. The taste of your lips, the fragrance of your hair, the warmth of your embrace – these sensations are eternally engraved in the tapestry of my being.
+    
+            I confess, despite the years that have passed and the paths we've chosen, my love for you remains unwavering. I understand the barriers that life has placed between us – marriage and family. Yet, love, resilient and unyielding, refuses to be confined by such boundaries.
+    
+            Your happiness with your husband and daughter is my sincerest wish, and I harbor no desire to disrupt that joy. Still, I want you to know that I am here, steadfast and true, should you ever need me. Our history, filled with the innocence of childhood and the intensity of first love, is a story that could rival the most beautiful films.
+    
+            Mwangaza, you are my eternal girlfriend, and the love I bear for you transcends time and circumstance. It is a flame that continues to burn, casting its glow on the pages of our shared history.
+    
+            Forever Yours, Clesh
+        </p>
+    </div>
+    <br>
+        <button id="restart-button" onclick="restartQuiz()">Restart Quiz</button>
+
+    <script>
+        const questions = [
+            {
+                question: "In what class did you and Clesh first meet?",
+                options: ["First class", "Second class", "Third class", "Fourth class"],
+                correctAnswer: "Second class",
+                explanation: "You and Clesh met in second class."
+            },
+            {
+                question: "How did Clesh feel when he saw you for the first time?",
+                options: ["Annoyed", "Mesmerized", "Indifferent", "Confused"],
+                correctAnswer: "Mesmerized",
+                explanation: "Clesh felt as if the world had stopped, mesmerized by your beauty and your light."
+            },
+            {
+                question: "What kind of phone did Clesh get and what color light did it come on?",
+                options: ["iPhone X", "Samsung Galaxy", "Nokia 1101", "Motorola Razr"],
+                correctAnswer: "Nokia 1101",
+                explanation: "Clesh got a Nokia 1101, and it turned on an orange light."
+            },
+            {
+                question: "Where was your secret meeting place?",
+                options: ["Park", "Library", "Behind Grace's house, where there was a straw chair", "Movie theater"],
+                correctAnswer: "Behind Grace's house, where there was a straw chair",
+                explanation: "Your secret meeting place was behind Grace's house, where there was a straw chair."
+            },
+            {
+                question: "What did Clesh feel when he kissed you for the first time?",
+                options: ["Awkward", "Sweet and passionate", "Forgettable", "Unpleasant"],
+                correctAnswer: "Sweet and passionate",
+                explanation: "The first kiss with you was the sweetest and most passionate kiss Clesh had ever experienced."
+            },
+            {
+                question: "What does Clesh say about your place in his heart?",
+                options: ["Easily replaceable", "Irreplaceable, and you will continue to be his eternal girlfriend", "Temporary", "Meaningless"],
+                correctAnswer: "Irreplaceable, and you will continue to be his eternal girlfriend",
+                explanation: "Your place in Clesh's heart is irreplaceable, and you will continue to be his eternal girlfriend."
+            },
+            {
+                question: "Even though you're married and have a daughter, what does Clesh express about his love for you?",
+                options: ["He has moved on", "He still loves her, and he will never give up on his love for her", "He is indifferent", "He regrets his feelings"],
+                correctAnswer: "He still loves her, and he will never give up on his love for her",
+                explanation: "Even though you are married and have a daughter, Clesh still loves her and will never give up his love for her."
+            },
+            {
+                question: "According to Clesh, what would your story do?",
+                options: ["A boring novel", "A complicated story", "A beautiful film", "An irrelevant tale"],
+                correctAnswer: "A beautiful film",
+                explanation: "According to Clesh, your story would make a beautiful movie."
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let correctAnswers = 0;
+
+        function displayQuestion() {
+            const questionElement = document.getElementById('question');
+            const optionsElement = document.getElementById('options');
+            const explanationElement = document.getElementById('explanation');
+            const currentQuestion = questions[currentQuestionIndex];
+
+            questionElement.textContent = currentQuestion.question;
+
+            optionsElement.innerHTML = '';
+            currentQuestion.options.forEach((option, index) => {
+                const button = document.createElement('button');
+                button.classList.add('option');
+                button.textContent = option;
+                button.addEventListener('click', () => checkAnswer(index));
+                optionsElement.appendChild(button);
+            });
+
+            explanationElement.textContent = '';
+        }
+
+        function checkAnswer(selectedOptionIndex) {
+            const questionElement = document.getElementById('question');
+            const explanationElement = document.getElementById('explanation');
+            const currentQuestion = questions[currentQuestionIndex];
+            const selectedAnswer = currentQuestion.options[selectedOptionIndex];
+
+            if (selectedAnswer === currentQuestion.correctAnswer) {
+                correctAnswers++;
+            }
+
+            explanationElement.textContent = currentQuestion.explanation;
+
+            setTimeout(() => {
+                explanationElement.textContent = '';
+                currentQuestionIndex++;
+
+                if (currentQuestionIndex < questions.length) {
+                    displayQuestion();
+                } else {
+                    displaySurpriseMessage();
+                }
+            }, 10000);
+        }
+
+        function displaySurpriseMessage() {
+            const surpriseMessageElement = document.getElementById('surprise-message');
+            const loveDeclarationElement = document.getElementById('love-declaration');
+            const restartButtonElement = document.getElementById('restart-button');
+
+            surpriseMessageElement.textContent = `You got ${correctAnswers} out of ${questions.length} questions correct.`;
+            loveDeclarationElement.style.display = 'block';
+            restartButtonElement.style.display = 'block';
+        }
+
+        function restartQuiz() {
+            currentQuestionIndex = 0;
+            correctAnswers = 0;
+            document.getElementById('love-declaration').style.display = 'none';
+            document.getElementById('restart-button').style.display = 'none';
+            document.getElementById('surprise-message').textContent = ''; // Remove the congratulations message
+            displayQuestion();
+        }
+
+        // Initial display
+        displayQuestion();
+    </script>
+</body>
+</html>
